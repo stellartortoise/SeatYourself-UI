@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import PhotoCard from '../ui/PhotoCard';
 
-
-function App() {
+function Home() 
+{
   const [ocassion, setOcassion] = useState([]);
 
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -31,14 +32,17 @@ function App() {
             ocassion.map((item) => (
               <div key={item.OccasionId}>
                 <h2>{item.Title}</h2>
-                <img src={item.Filename} alt={item.Title} />
+                {/* <img src={item.Filename} alt={item.Title} /> */}
+                <PhotoCard imageSrc={item.Filename} title={item.Title}/>
                 <p>{item.Description}</p>
               </div>
             )))
       }
       </div>
     </>
-  )
+  ); 
+
+
 }
 
-export default App
+export default Home
