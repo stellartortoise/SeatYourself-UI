@@ -66,3 +66,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.masonry-grid {
+  column-count: 3;
+  column-gap: 1.5rem;
+}
