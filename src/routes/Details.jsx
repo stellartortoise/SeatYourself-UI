@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Details() {
@@ -26,23 +25,21 @@ function Details() {
 
     return (
         <>
-            <p><Link to="/">Go to Home</Link></p>
+            <p><Link to="/">← Back to Home</Link></p>
 
             <div>
                 {occasion && (
                     <>
                         <h2>{occasion.Title}</h2>
-                        <img src={occasion.Filename} alt={occasion.Title} />
+                        <img src={occasion.Filename} alt={occasion.Title} width="600" />
                         <p>{occasion.Description}</p>
                     </>
                 )}
             </div>
 
-            {/* <div>Details Page for ID: {id}</div>
+            <h3>Comments</h3>
 
-            <h2>Comments</h2>
-
-            <p>Coming Soon...</p> */}
+            <p>Coming Soon...</p>
 
             <p><Link to={`/comments/${id}`}>Add a Comment</Link></p>
         </>

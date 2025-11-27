@@ -1,42 +1,37 @@
 import { useEffect, useState } from 'react';
-import PhotoCard from '../ui/PhotoCard';
+import OccasionCard from '../ui/OccasionCard';
 
 function Home() 
 {
-  const [ocassion, setOcassion] = useState([]);
+  const [occasions, setOccasions] = useState([]);
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    const getOcassion = async () => {
+    const getOccasions = async () => {
       const response = await fetch(apiUrl);
-      const data = await response.json();
+      const result = await response.json();
 
       if (response.ok) {
-        setOcassion(data);
+        setOccasions(result);
       }
     }
 
-    getOcassion();
-
-    console.log('Ocassion data:', ocassion);
+    getOccasions();
 
   }, []);
 
   return (
     <>
       <p>Welcome to My Awesome App!</p>
-      <div className="masonry-grid">
+      <div className="occasion-grid">
       {
-        ocassion.length > 0 && (
-            ocassion.map((item) => (
-              <div key={item.OccasionId}>
-                <h2>{item.Title}</h2>
-                {/* <img src={item.Filename} alt={item.Title} /> */}
-                <PhotoCard imageSrc={item.Filename} title={item.Title}/>
-                <p>{item.Description}</p>
+        occasions.length > 0 && (
+            occasions.map((occasion => (
+              <div key={occasion.OccasionId}>
+                <OccasionCard OccasionId={occasion.OccasionId} Filename={occasion.Filename} Title={occasion.Title}/>
               </div>
-            )))
+            ))))
       }
       </div>
     </>
