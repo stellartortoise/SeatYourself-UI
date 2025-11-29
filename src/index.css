@@ -15,11 +15,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #20eca8;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #69f0c3;
 }
 
 body {
@@ -28,6 +28,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  padding-top: 70px;
 }
 
 h1 {
@@ -60,7 +61,7 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #20eca8;
   }
   button {
     background-color: #f9f9f9;
@@ -80,10 +81,15 @@ button:focus-visible {
   position: relative;
 }
 
+.occasion-grid-item :hover {
+  transition: filter 0.3s ease, transform 0.3s ease;
+  transform: translateY(-8px);
+}
+
 .occasion-grid-item img{
   width: 100%;
   display: block;
-  border-radius: 2px;
+  border-radius: 15px;
 }
 
 .occasion-grid-item img:hover {
@@ -107,6 +113,98 @@ button:focus-visible {
 
 .occasion-grid-item a:hover .label {
   display: block;
+}
+
+/* nav {
+  background-color: #797979;
+  border-bottom: 1px solid #777777;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem; 
+  padding: 0.5rem 1rem;
+  width: 100%;
+} */
+
+nav, .nav-menu, .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  /* z-index: 1030; */
+  background-color: #999999;
+  border-bottom: 1px solid #777777;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  gap: 1rem;
+  display: flex;
+}
+
+nav a {
+  font-weight: 500;
+  color: #20eca8;
+  text-decoration: inherit;
+}
+
+.nav-item {
+  margin: 0 10px;
+  transition: transform 0.2s ease; /* Smooth transition for the hover effect */
+}
+
+.nav-item:hover {
+  /* Grow */
+  transform: scale(1.1);
+}
+
+/* .navbar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  /* z-index: 1030; */
+/*} */
+
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* or flex-start, depending on desired layout */
+  width: 100%;
+}
+.navbar .navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+}
+
+.navbar-container {
+  /* create solid line on bottom and colour navbar */
+  border-bottom: 1px solid #777777;
+  width: 100%;
+  background-color: #797979;
+  padding: 0.5rem 1rem;
+}
+
+.grid-container {
+  padding: 1rem 3rem;
+} 
+
+.center {
+  align-items: center;
+  text-align: center;
 }
 
 @media (max-width: 992px) {

@@ -5,17 +5,29 @@ import { Link } from 'react-router-dom';
 
 function NavMenu() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand as={Link} to="#home"></Navbar.Brand>
-        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
-          <Nav className="mx-auto d-flex flex-row">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <span className="divider"></span>
-            <Nav.Link as={Link} to="/characters">Characters</Nav.Link>
-          </Nav>
-      </Container>
-    </Navbar>
+        // <Navbar expand="lg" bg="light" variant="light" fixed="top" className="shadow-sm">
+        // <Container>
+        //     <div className="navbar-container">
+        //     <Navbar.Brand as={Link} to="/">SeatYourself</Navbar.Brand>
+        //     <Navbar.Toggle aria-controls="main-navbar" />
+        //     <Navbar.Collapse id="main-navbar">
+        //     <Nav className="ms-auto d-flex flex-row align-items-center">
+        //         <Nav.Link as={Link} to="/">Home</Nav.Link>
+        //         <span className="divider mx-2" />
+        //         <Nav.Link as={Link} to="/occasions">Occasions</Nav.Link>
+        //     </Nav>
+        //     </Navbar.Collapse>
+        //     </div>
+        // </Container>
+        // </Navbar>
+
+        <nav className="nav-menu">
+          <Link to="/" className=""><img className="nav-item" src="public\SeatYourselfText_32.png" alt="logo"/></Link>
+            <ul>
+                <li className="nav-item"><Link to="/">Cart</Link></li>
+                <li className="nav-item"><Link to="/occasions">Purchases</Link></li>
+            </ul>
+        </nav>
   );
 }
 

@@ -23,16 +23,18 @@ function Home()
 
   return (
     <>
-      <p>Welcome to My Awesome App!</p>
-      <div className="occasion-grid">
-      {
-        occasions.length > 0 && (
-            occasions.map((occasion => (
-              <div key={occasion.OccasionId}>
-                <OccasionCard OccasionId={occasion.OccasionId} Filename={occasion.Filename} Title={occasion.Title}/>
-              </div>
-            ))))
-      }
+      <h3 className="center">Welcome to SeatYourself</h3>
+      <div className="grid-container">
+        <div className="occasion-grid">
+        {
+          occasions.length > 0 && (
+              occasions.map((occasion => (
+                <div key={occasion.OccasionId}>
+                  <OccasionCard OccasionId={occasion.OccasionId} Filename={occasion.Filename} Title={occasion.Title}/>
+                </div>
+              ))))
+        }
+        </div>
       </div>
     </>
   ); 

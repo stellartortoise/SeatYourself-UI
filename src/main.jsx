@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './routes/Home.jsx'
 import Comment from './routes/Comment.jsx'
 import Details from './routes/Details.jsx'
