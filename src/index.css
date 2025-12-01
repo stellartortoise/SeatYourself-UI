@@ -351,6 +351,22 @@ nav a {
   padding: 1rem;
 }
 
+.search-wrapper {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.search {
+  width: 80%;
+  max-width: 400px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #219c92;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  color:#1a1a1a
+}
+
 
 @media (max-width: 992px) {
   .occasion-grid {
