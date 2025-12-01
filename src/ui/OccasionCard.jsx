@@ -50,7 +50,11 @@ function OccasionCard(props) {
             <Link to={`/details/${props.OccasionId}`}>
                 <img src={props.Filename} alt={props.Title} />
                 <div className="labels">
+<<<<<<< HEAD
                     <div className="label title"><h2>{props.Title}</h2></div>
+=======
+                    <div className="label title"><h3>{props.Title}</h3></div>
+>>>>>>> 2c5b729963f0bde055226012b53eaa178eb8eba1
                     <div className="label date">
                         <span className="label-text">Date:</span>
                         <span className="date-value"> {formattedDate}</span>
