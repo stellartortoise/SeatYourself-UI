@@ -15,11 +15,11 @@
 
 a {
   font-weight: 500;
-  color: #20eca8;
+  color: #20eca8 !important;
   text-decoration: inherit;
 }
 a:hover {
-  color: #69f0c3;
+  color: #69f0c3 !important;
 }
 
 body {
@@ -29,11 +29,16 @@ body {
   min-width: 320px;
   min-height: 100vh;
   padding-top: 70px;
+  background-color: #cbffee !important;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  color: #1f7465 !important; 
 }
 
 button {
@@ -198,8 +203,8 @@ nav, .nav-menu, .navbar {
   right: 0;
   width: 100%;
   /* z-index: 1030; */
-  background-color: #999999;
-  border-bottom: 1px solid #777777;
+  background-color: #3aa58e;
+  border-bottom: 1px solid #41817c;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -324,10 +329,26 @@ nav a {
   margin-bottom: 1rem;
 }
 
+.labels h2 {
+  color: #ffffff !important;
+}
+
 .occasion-details p {
   font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 1rem;
+}
+
+.details-info {
+  margin-top: 1rem;
+  margin: 1rem auto;
+  background-color: #4ab9ab;
+  color: #cafff6;
+  border-radius: 15px;
+  width: 50%;
+  align-items: center;
+  text-align: left;
+  padding: 1rem;
 }
 
 
