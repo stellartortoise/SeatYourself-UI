@@ -30,7 +30,7 @@ function Home()
           occasions.length > 0 && (
               occasions.map((occasion => (
                 <div key={occasion.OccasionId}>
-                  <OccasionCard OccasionId={occasion.OccasionId} Filename={occasion.Filename} Title={occasion.Title}/>
+                  <OccasionCard OccasionId={occasion.OccasionId} Filename={occasion.Filename} Title={occasion.Title} Description={occasion.Description} Date={occasion.Date} Time={occasion.Time} Location={occasion.Location} Price={occasion.Price} />
                 </div>
               ))))
         }
