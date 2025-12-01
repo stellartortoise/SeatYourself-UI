@@ -24,7 +24,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  display: block;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -307,6 +307,27 @@ nav a {
 /* show the stacked labels when hovering the card/link */
 .occasion-grid-item a:hover .labels {
   display: flex;
+}
+
+.occasion-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  align-items: centerS;
+}
+
+.occasion-details img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+
+.occasion-details p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
 

@@ -22,7 +22,7 @@ function NavMenu() {
         // </Navbar>
 
         <nav className="nav-menu">
-          <Link to="/" className=""><img className="nav-item" src="public\SeatYourselfText_32.png" alt="logo"/></Link>
+          <Link to="/" className=""><img className="nav-item" src="/SeatYourselfText_32.png" alt="logo"/></Link>
             <ul>
                 <li className="nav-item"><Link to="/">Cart</Link></li>
                 <li className="nav-item"><Link to="/occasions">Purchases</Link></li>

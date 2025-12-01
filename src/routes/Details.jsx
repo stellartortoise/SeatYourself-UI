@@ -23,6 +23,62 @@ function Details() {
         getOccasionById();
     }, []);
 
+    if (!occasion) return <p>Loading...</p>;
+
+    const formattedDate = occasion.Date
+    ? (() => {
+        const date = new Date(occasion.Date);
+        return isNaN(date.getTime()) ? occasion.Date : date.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
+      })()
+    : '';
+
+    const formattedTime = occasion.Time
+    ? (() => {
+        const time = String(occasion.Time).trim();
+        let parsedDate = new Date(time);
+        // If parsing failed, try parsing time-only formats like "18:30" or "6:30 PM"
+        if (isNaN(parsedDate.getTime())) {
+        const timeOnly = /^(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM|am|pm)?$/;
+        const timeMatchResults = time.match(timeOnly);
+        if (timeMatchResults) {
+            parsedDate = new Date();
+            let hour = parseInt(timeMatchResults[1], 10);
+            const minute = parseInt(timeMatchResults[2], 10);
+            const sec = timeMatchResults[3] ? parseInt(timeMatchResults[3], 10) : 0;
+            const ampm = timeMatchResults[4];
+            if (ampm) {
+            const up = ampm.toUpperCase();
+            if (up === 'PM' && hour < 12) hour += 12;
+            if (up === 'AM' && hour === 12) hour = 0;
+            }
+            d.setHours(hour, minute, sec, 0);
+        }
+        }
+        
+        if (isNaN(parsedDate.getTime())) return occasion.Time;
+
+          // Format as 12-hour with uppercase AM/PM (no dots)
+          let hours = parsedDate.getHours();
+          const minutes = parsedDate.getMinutes();
+          const ampmLabel = hours >= 12 ? 'PM' : 'AM';
+          hours = hours % 12 || 12;
+          const minuteStr = String(minutes).padStart(2, '0');
+          return `${hours}:${minuteStr} ${ampmLabel}`;
+        })()
+    : '';
+
+    const formattedPrice = (() => {
+        if (occasion.Price === undefined || occasion.Price === null) return '';
+        // try numeric conversion first
+        const num = Number(occasion.Price);
+        if (!isNaN(num)) return num.toFixed(2);
+        // strip non-numeric characters and try parseFloat
+        const cleaned = String(occasion.Price).replace(/[^0-9.\-]+/g, '');
+        const parsed = parseFloat(cleaned);
+         return isNaN(parsed) ? String(occasion.Price) : parsed.toFixed(2);
+    })();
+
+
     return (
         <>
             <p><Link to="/">← Back to Home</Link></p>
@@ -30,9 +86,19 @@ function Details() {
             <div>
                 {occasion && (
                     <>
+                    <div className="occasion-details">
                         <h2>{occasion.Title}</h2>
                         <img src={occasion.Filename} alt={occasion.Title} width="600" />
                         <p>{occasion.Description}</p>
+                        <div className="details-info">
+                            <div><strong>Date:</strong> {formattedDate}</div>
+                            <div><strong>Time:</strong> {formattedTime}</div>
+                            <div><strong>Location:</strong> {occasion.Location}</div>
+                            <div><strong>Owner:</strong> {occasion.Owner}</div>
+                            <div><strong>Category:</strong> {occasion.Name}</div>
+                            <div><strong>Price:</strong> ${formattedPrice}</div>
+                        </div>
+                    </div>
                     </>
                 )}
             </div>
