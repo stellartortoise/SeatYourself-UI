@@ -77,54 +77,115 @@ button:focus-visible {
   margin-bottom: 1rem;
   padding: 0;
   display: block;
-  break-inside: avoid; /* keep the whole card in one column */
+  break-inside: avoid;
   position: relative;
+  overflow: visible;
+  z-index: 0;
+  /* keep any existing transitions on transform/box-shadow */
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms ease;
 }
 
-.occasion-grid-item :hover {
-  transition: filter 0.3s ease, transform 0.3s ease;
+.occasion-grid-item:hover {
+  /* transition: filter 0.3s ease, transform 0.3s ease; */
   transform: translateY(-8px);
+
+  /* box-shadow: 0 10px 20px rgba(0,0,0,0.25); */
+  z-index: 5;
 }
+
 
 .occasion-grid-item img{
   width: 100%;
   display: block;
   border-radius: 15px;
+
+  height: auto;
+  position: relative;
+  z-index: 1;
 }
 
-.occasion-grid-item img:hover {
-  filter: brightness(0.65);
+.occasion-grid-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0); /* start transparent */
+  transition: background 200ms ease;
+  z-index: 2;
+  pointer-events: none; /* don't block mouse events */
 }
+
+.occasion-grid-item:hover::after {
+  background: rgba(0,0,0,0.28); /* adjust opacity to taste */
+  border-radius: 15px;
+}
+
+/* .occasion-grid-item img:hover {
+  filter: brightness(0.65);
+} */
 
 .occasion-grid-item a {
   text-decoration: none;
   color: inherit;
 }
 
-.occasion-grid-item .label {
+.occasion-grid-item .labels {
   position: absolute;
-  bottom: 8px;
   left: 16px;
-  color: white;
-  font-size: 1rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  display: none;
+  bottom: 16px;
+  display: none;               /* shown on hover */
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  z-index: 4;
+  width: calc(100% - 32px);    /* limit to card width */
+  box-sizing: border-box;
 }
 
-.occasion-grid-item a:hover .label {
+/* stacked labels: scale responsively and truncate if needed */
+.occasion-grid-item .labels .label {
+  position: static;
   display: block;
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  color: #fff;
+  border-radius: 6px;
+
+  /* responsive font-size that grows with viewport but stays within bounds */
+  font-size: /*clamp(0.1vw, 1.6vw, 2vw);*/ 0.1rem;
+  line-height: 1.0;
+
+  /* prevent overflow and keep label on a single line with ellipsis */
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* nav {
-  background-color: #797979;
-  border-bottom: 1px solid #777777;
+.occasion-grid-item .labels .label h3,
+.occasion-grid-item .labels .label h4 {
+  margin: 0;
+  line-height: 1.0;
+  /* responsive but bounded size */
+  font-size: clamp(12px, 1.6vw, 16px);
+  /* prevent overflow */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* optional: allow up to 2 lines instead of truncating (use class="label multiline") */
+.occasion-grid-item .labels .label.multiline {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* show stacked labels on hover */
+.occasion-grid-item a:hover .labels {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem; 
-  padding: 0.5rem 1rem;
-  width: 100%;
-} */
+}
 
 nav, .nav-menu, .navbar {
   position: fixed;
@@ -206,6 +267,44 @@ nav a {
   align-items: center;
   text-align: center;
 }
+
+.labels {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 16px;
+
+}
+
+.occasion-grid-item .labels {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: none;               /* show on hover */
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  z-index: 4;
+}
+
+/* individual labels are static so they stack naturally */
+.occasion-grid-item .labels .label {
+  position: static;
+  display: block;
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  color: white;
+  font-size: 0.95rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  /* background: rgba(0,0,0,0.35); */
+  border-radius: 6px;
+}
+
+/* show the stacked labels when hovering the card/link */
+.occasion-grid-item a:hover .labels {
+  display: flex;
+}
+
 
 @media (max-width: 992px) {
   .occasion-grid {
