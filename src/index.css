@@ -15,11 +15,11 @@
 
 a {
   font-weight: 500;
-  color: #20eca8 !important;
+  color: #1bbd71 !important;
   text-decoration: inherit;
 }
 a:hover {
-  color: #69f0c3 !important;
+  color: #59e9c5 !important;
 }
 
 body {
@@ -222,7 +222,7 @@ nav ul {
 
 nav a {
   font-weight: 500;
-  color: #20eca8;
+  color: #20eca8 !important;
   text-decoration: inherit;
 }
 
