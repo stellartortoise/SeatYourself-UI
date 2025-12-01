@@ -187,6 +187,10 @@ button:focus-visible {
   display: flex;
 }
 
+.date-value, .time-value, .location-value, .price-value {
+  font-weight: bold;
+}
+
 nav, .nav-menu, .navbar {
   position: fixed;
   top: 0;

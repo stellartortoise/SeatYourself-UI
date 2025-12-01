@@ -44,13 +44,24 @@ function OccasionCard(props) {
         })()
     : '';
 
+    const formattedPrice = (() => {
+        if (props.Price === undefined || props.Price === null) return '';
+        // try numeric conversion first
+        const num = Number(props.Price);
+        if (!isNaN(num)) return num.toFixed(2);
+        // strip non-numeric characters and try parseFloat
+        const cleaned = String(props.Price).replace(/[^0-9.\-]+/g, '');
+        const parsed = parseFloat(cleaned);
+         return isNaN(parsed) ? String(props.Price) : parsed.toFixed(2);
+    })();
+
     return (
         <>
         <div className="occasion-grid-item">
             <Link to={`/details/${props.OccasionId}`}>
                 <img src={props.Filename} alt={props.Title} />
                 <div className="labels">
-                    <div className="label title"><h3>{props.Title}</h3></div>
+                    <div className="label title"><h2>{props.Title}</h2></div>
                     <div className="label date">
                         <span className="label-text">Date:</span>
                         <span className="date-value"> {formattedDate}</span>
@@ -59,8 +70,14 @@ function OccasionCard(props) {
                         <span className="label-text">Time:</span>
                         <span className="time-value"> {formattedTime}</span>
                     </div>
-                    <div className="label location"><h4>Location:</h4>{props.Location}</div>
-                    <div className="label price"><h4>Price:</h4>${props.Price}</div>
+                    <div className="label location">
+                        <span className="label-text">Location:</span>
+                        <span className="location-value"> {props.Location}</span>
+                    </div>
+                    <div className="label price">
+                        <span className="label-text">Price:</span>
+                        <span className="price-value"> ${formattedPrice}</span>
+                    </div>
                 </div>
             </Link>
         </div>
