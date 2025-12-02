@@ -1,10 +1,29 @@
 import { useParams } from 'react-router-dom';
 import { Link} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
 
 function Comment() {
   const { id } = useParams();
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+    // const [comments, setComments] = useState([]);
+  
+    // const apiUrl = import.meta.env.VITE_API_URL + '/comments';
+  
+    // useEffect(() => {
+    //   const getComments = async () => {
+    //     const response = await fetch(apiUrl);
+    //     const result = await response.json();
+  
+    //     if (response.ok) {
+    //       setComments(result);
+    //     }
+    //   }
+  
+    //   getComments();
+  
+    // }, []);
 
   const onSubmit = async(data) => {
     console.log(data);

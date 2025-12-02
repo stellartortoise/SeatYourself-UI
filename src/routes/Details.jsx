@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import CommentCard from '../ui/CommentCard.jsx';
 
 function Details() {
 
@@ -21,6 +22,23 @@ function Details() {
         };
 
         getOccasionById();
+    }, []);
+
+    const [comments, setComments] = useState([]);
+
+    const apiUrlComments = import.meta.env.VITE_API_URL + '/comments';
+
+    useEffect(() => {
+        const getComments = async () => {
+            const response = await fetch(apiUrlComments);
+            const result = await response.json();
+
+            if (response.ok) {
+                setComments(result);
+            }
+        }
+
+        getComments();
     }, []);
 
     if (!occasion) return <p>Loading...</p>;
@@ -78,6 +96,7 @@ function Details() {
          return isNaN(parsed) ? String(occasion.Price) : parsed.toFixed(2);
     })();
 
+    const filteredComments = comments.filter(c => String(c.OccasionId) === String(id));
 
     return (
         <>
@@ -105,7 +124,18 @@ function Details() {
 
             <h3>Comments</h3>
 
-            <p>Coming Soon...</p>
+
+            <div>
+            {filteredComments.length > 0 ? (
+              filteredComments.map(comment => (
+                <div key={comment.CommentId ?? comment.id}>
+                 <CommentCard Author={comment.Author} Body={comment.Body} CreatedAt={comment.CreatedAt} />
+                </div>
+              ))
+            ) : (
+              <p>No comments yet.</p>
+            )}
+            </div>
 
             <p><Link to={`/comments/${id}`}>Add a Comment</Link></p>
         </>
