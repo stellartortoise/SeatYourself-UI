@@ -124,17 +124,16 @@ function Details() {
 
             <h3>Comments</h3>
 
-
             <div>
-            {filteredComments.length > 0 ? (
-              filteredComments.map(comment => (
-                <div key={comment.CommentId ?? comment.id}>
-                 <CommentCard Author={comment.Author} Body={comment.Body} CreatedAt={comment.CreatedAt} />
-                </div>
-              ))
-            ) : (
-              <p>No comments yet.</p>
-            )}
+                {filteredComments.length > 0 ? (
+                filteredComments.map(comment => (
+                    <div key={comment.CommentId ?? comment.id}>
+                    <CommentCard Author={comment.Author} Body={comment.Body} CreatedAt={comment.CreatedAt} />
+                    </div>
+                ))
+                ) : (
+                <p>No comments yet.</p>
+                )}
             </div>
 
             <p><Link to={`/comments/${id}`}>Add a Comment</Link></p>
