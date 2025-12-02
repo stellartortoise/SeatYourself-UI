@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 function Comment() {
   const { id } = useParams();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const onSubmit = async(data) => {
     console.log(data);
@@ -38,12 +38,14 @@ function Comment() {
                 <div className="mb-3">
                     <label htmlFor="Author" className="form-label">Author</label>
                     <input type="text" className="form-control" id="Author"
-                     {...register('Author')} />
+                     {...register('Author', { required: true })} />
+                     {errors.Author && <span className="text-danger">This field is required</span>}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="Body" className="form-label">Body</label>
                     <textarea className="form-control" id="Body" rows="3" 
-                    {...register('Body')}></textarea>
+                    {...register('Body', { required: true })}></textarea>
+                    {errors.Body && <span className="text-danger">This field is required</span>}
                 </div>
 
                 <button type="submit" className="btn btn-primary">Submit</button>
