@@ -7,9 +7,20 @@ function Comment() {
     return (
         <>
             <p><Link to={`/details/${id}`}>← Back to Occasion</Link></p>
-            <div>
-                <h2>Comment Component for ID: {id}</h2>
-            </div>
+            
+            <form className="w-100 p-3 border rounded">
+                <div className="mb-3">
+                    <label for="author" className="form-label">Author</label>
+                    <input type="text" className="form-control" id="author" />
+                </div>
+                <div className="mb-3">
+                    <label for="body" className="form-label">Body</label>
+                    <textarea className="form-control" id="body" rows="3"></textarea>
+                    {/* <input type="" className="form-control" id="body" /> */}
+                </div>
+
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
             
         </>
     );

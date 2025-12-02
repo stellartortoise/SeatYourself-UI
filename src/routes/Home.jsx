@@ -7,6 +7,22 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
+// Luhn Algorythm
+// function luhnCheck(value) {
+//   let sum = 0;
+//   let shouldDouble = false;
+//   for (let i = value.length - 1; i >= 0; i--) {
+//     let digit = parseInt(value.charAt(i));
+//     if (shouldDouble) {
+//       digit *= 2;
+//       if (digit > 9) digit -= 9;
+//     }
+//     sum += digit;
+//     shouldDouble = !shouldDouble;
+//   }
+//   return sum % 10 === 0;
+// }
+
 function Home() 
 {
   const [occasions, setOccasions] = useState([]);
