@@ -1,15 +1,34 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import CommentCard from '../ui/CommentCard.jsx';
 
 function Details() {
 
     const { id } = useParams();
+    const navigate = useNavigate();
+    const handlePurchaseClick = () => navigate(`/purchase/${id}`);
 
     const [occasion, setOccasion] = useState(null);
 
     const apiUrl = import.meta.env.VITE_API_URL;
+
+        const [purchase, setPurchase] = useState(null);
+
+    const apiUrlPurchase = import.meta.env.VITE_API_URL + '/purchase';
+
+    useEffect(() => {
+        const getPurchase = async () => {
+            const response = await fetch(`${apiUrlPurchase}/${id}`);
+            const result = await response.json();
+            if (response.ok) {
+                // Go to purchase page
+                const url = result.PurchaseLink;
+                window.location.href = url;
+                //setPurchase(result);
+            }
+        }
+        getPurchase();
+    }, []);
 
     useEffect(() => {
         const getOccasionById = async () => {
@@ -86,14 +105,15 @@ function Details() {
     : '';
 
     const formattedPrice = (() => {
+        if (occasion.Price === 0) return 'FREE!';
         if (occasion.Price === undefined || occasion.Price === null) return '';
         // try numeric conversion first
         const num = Number(occasion.Price);
-        if (!isNaN(num)) return num.toFixed(2);
+        if (!isNaN(num)) return `$${num.toFixed(2)}`;
         // strip non-numeric characters and try parseFloat
         const cleaned = String(occasion.Price).replace(/[^0-9.\-]+/g, '');
         const parsed = parseFloat(cleaned);
-         return isNaN(parsed) ? String(occasion.Price) : parsed.toFixed(2);
+        return isNaN(parsed) ? String(occasion.Price) : `$${parsed.toFixed(2)}`;
     })();
 
     const filteredComments = comments.filter(c => String(c.OccasionId) === String(id));
@@ -115,12 +135,17 @@ function Details() {
                             <div><strong>Location:</strong> {occasion.Location}</div>
                             <div><strong>Owner:</strong> {occasion.Owner}</div>
                             <div><strong>Category:</strong> {occasion.Name}</div>
-                            <div><strong>Price:</strong> ${formattedPrice}</div>
+                            <div><strong>Price:</strong> {formattedPrice}</div>
                         </div>
                     </div>
                     </>
                 )}
             </div>
+
+            <div className="mb-4 center">
+                <button className="btn btn-primary" onClick={handlePurchaseClick}>Purchase</button>
+            </div>
+            
 
             <h3>Comments</h3>
 
@@ -128,7 +153,7 @@ function Details() {
                 {filteredComments.length > 0 ? (
                 filteredComments.map(comment => (
                     <div key={comment.CommentId ?? comment.id}>
-                    <CommentCard Author={comment.Author} Body={comment.Body} CreatedAt={comment.CreatedAt} />
+                    <CommentCard Author={comment.Author} Body={comment.Body} CreatedAt={comment.CreateDatet} />
                     </div>
                 ))
                 ) : (
