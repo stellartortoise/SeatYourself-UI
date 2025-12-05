@@ -13,7 +13,7 @@ function NavMenu() {
 
           <ul>
               {/* <li className="nav-item"><Link to="/">Cart</Link></li> */}
-              <li className="nav-item"><Link to="/orders">Orders</Link></li>
+              {/* <li className="nav-item"><Link to="/orders">Orders</Link></li> */}
           </ul>
 
         </nav>
