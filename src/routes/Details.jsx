@@ -6,15 +6,15 @@ function Details() {
 
     const { id } = useParams();
     const navigate = useNavigate();
-    const handlePurchaseClick = () => navigate(`/purchase/${id}`);
+    const handlePurchaseClick = () => navigate(`/purchases/${id}`);
 
     const [occasion, setOccasion] = useState(null);
 
     const apiUrl = import.meta.env.VITE_API_URL;
 
-        const [purchase, setPurchase] = useState(null);
+    const [purchase, setPurchase] = useState(null);
 
-    const apiUrlPurchase = import.meta.env.VITE_API_URL + '/purchase';
+    const apiUrlPurchase = import.meta.env.VITE_API_URL + '/purchases';
 
     useEffect(() => {
         const getPurchase = async () => {

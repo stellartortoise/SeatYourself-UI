@@ -7,22 +7,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-// Luhn Algorythm
-// function luhnCheck(value) {
-//   let sum = 0;
-//   let shouldDouble = false;
-//   for (let i = value.length - 1; i >= 0; i--) {
-//     let digit = parseInt(value.charAt(i));
-//     if (shouldDouble) {
-//       digit *= 2;
-//       if (digit > 9) digit -= 9;
-//     }
-//     sum += digit;
-//     shouldDouble = !shouldDouble;
-//   }
-//   return sum % 10 === 0;
-// }
-
 function Home() 
 {
   const [occasions, setOccasions] = useState([]);
@@ -87,20 +71,7 @@ function Home()
             placeholder="Search titles..."
             aria-label="Search occasions"
           />
-        </div>
-      {/* Non-Searchable elements here */}
-      {/* <div className="grid-container">
-        <div className="occasion-grid">
-        {
-          occasions.length > 0 && (
-              occasions.map((occasion => (
-                <div key={occasion.OccasionId ?? occasion.id}>
-                  <OccasionCard OccasionId={occasion.OccasionId} Filename={occasion.Filename} Title={occasion.Title} Description={occasion.Description} Date={occasion.Date} Time={occasion.Time} Location={occasion.Location} Price={occasion.Price} />
-                </div>
-              ))))
-        }
-        </div>
-      </div> */}
+      </div>
       <div className="grid-container">
         <div className="occasion-grid">
         {filtered.length === 0 && occasions.length === 0 && <p>Loading...</p>}
